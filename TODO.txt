@@ -5,5 +5,3 @@
 [X] Added recipe for sapling
 
 [X] Add worldgen (very rare)
-
-[ ] Fix some leaves breaking
