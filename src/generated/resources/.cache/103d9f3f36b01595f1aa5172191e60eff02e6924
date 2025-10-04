@@ -1,0 +1,4 @@
+// 1.21.1	2025-10-04T17:41:53.3839312	Registries
+643ce0a7b620efc26eb280aecccfce389aa6236e data/aatm/neoforge/biome_modifier/add_apple_tree.json
+82a8832f5c00bb1c38230981b29338552ea1af30 data/aatm/worldgen/configured_feature/apple_tree.json
+fd492bb879ce82e70b21d03dd4cba4e0e7cd8ddf data/aatm/worldgen/placed_feature/apple_tree_placed.json
