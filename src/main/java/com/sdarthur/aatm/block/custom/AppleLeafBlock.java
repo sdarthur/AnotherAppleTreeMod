@@ -58,7 +58,7 @@ public class AppleLeafBlock extends LeavesBlock implements BonemealableBlock {
     protected void randomTick(BlockState state, ServerLevel level, BlockPos pos, RandomSource random) {
         int age = state.getValue(AGE);
 
-        if(age < MAX_AGE && level.getRawBrightness(pos.above(), 0) >= 9 && random.nextInt(3) != 0) {
+        if(age < MAX_AGE && level.getRawBrightness(pos.above(), 0) >= 9 && random.nextBoolean()) {
             BlockState blockState = state.setValue(AGE, age + 1);
             level.setBlock(pos, blockState, 2);
             level.gameEvent(GameEvent.BLOCK_CHANGE, pos, GameEvent.Context.of(blockState));
@@ -117,7 +117,7 @@ public class AppleLeafBlock extends LeavesBlock implements BonemealableBlock {
 
     @Override
     public boolean isBonemealSuccess(Level level, RandomSource randomSource, BlockPos blockPos, BlockState blockState) {
-        return true;
+        return randomSource.nextBoolean();
     }
 
     @Override

@@ -23,10 +23,10 @@ public class AATMBlocks {
     public static final DeferredBlock<Block> APPLE_TREE_SAPLING = registerBlock("apple_tree_sapling",
             () -> new SaplingBlock(AATMTreeGrower.APPLE_TREE, BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_SAPLING)));
 
-    public static final DeferredBlock<Block> APPLE_LEAVES = registerBlock("apple_leaves",
+    public static final DeferredBlock<Block> APPLE_FRUIT_LEAVES = registerBlock("apple_fruit_leaves",
             () -> new AppleLeafBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_LEAVES).randomTicks()));
 
-    public static final DeferredBlock<Block> APPLE_BUD_LEAVES = registerBlock("apple_bud_leaves",
+    public static final DeferredBlock<Block> APPLE_LEAVES = registerBlock("apple_leaves",
             () -> new AATMLeavesBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_LEAVES)));
 
     public static final DeferredBlock<Block> APPLE_FLOWER_LEAVES = registerBlock("apple_flower_leaves",

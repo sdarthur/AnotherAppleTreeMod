@@ -29,8 +29,8 @@ public class AATMConfiguredFeatures {
                 new StraightTrunkPlacer(4, 1, 0),
 
                 new WeightedStateProvider(SimpleWeightedRandomList.<BlockState>builder()
-                        .add(AATMBlocks.APPLE_LEAVES.get().defaultBlockState(), 1)
-                        .add(Blocks.OAK_LEAVES.defaultBlockState(), 7)),
+                        .add(AATMBlocks.APPLE_FRUIT_LEAVES.get().defaultBlockState(), 1)
+                       .add(AATMBlocks.APPLE_LEAVES.get().defaultBlockState(), 11)),
 
                 new CherryFoliagePlacer(ConstantInt.of(5), ConstantInt.of(0), ConstantInt.of(4), 0.3F, 0.2F, 0.4F, 0.0F),
                 new TwoLayersFeatureSize(2, 0, 3))

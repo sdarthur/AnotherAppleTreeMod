@@ -2,6 +2,6 @@
   "parent": "minecraft:block/leaves",
   "render_type": "minecraft:cutout",
   "textures": {
-    "all": "aatm:block/apple_bud_leaves"
+    "all": "aatm:block/apple_leaves"
   }
 }
