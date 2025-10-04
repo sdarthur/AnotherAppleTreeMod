@@ -27,10 +27,10 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
-//TODO: make it work like a crop maybe? lookup the rice from farmer's delight
+// Source: https://github.com/snowyhill-crafter/AppleTreeMod/blob/main/src/main/java/com/snowyhill/appletreemod/block/AppleFlowerLeavesBlock.java#L41
 public class AppleLeafBlock extends LeavesBlock implements BonemealableBlock {
-    public static final int MAX_AGE = 2;
-    public static final IntegerProperty AGE = IntegerProperty.create("age", 0, 2);
+    public static final int MAX_AGE = 3;
+    public static final IntegerProperty AGE = IntegerProperty.create("age", 0, 3);
 
     public static final VoxelShape LEAVES_SHAPE = Shapes.block();
 
@@ -38,10 +38,10 @@ public class AppleLeafBlock extends LeavesBlock implements BonemealableBlock {
         super(properties);
 
         this.registerDefaultState(this.stateDefinition.any()
-                .setValue(AGE, Integer.valueOf(0))
-                .setValue(DISTANCE, Integer.valueOf(7))
-                .setValue(PERSISTENT, Boolean.valueOf(false))
-                .setValue(WATERLOGGED, Boolean.valueOf(false)));
+                .setValue(AGE, 0)
+                .setValue(DISTANCE, 7)
+                .setValue(PERSISTENT, Boolean.FALSE)
+                .setValue(WATERLOGGED, Boolean.FALSE));
     }
 
     @Override
@@ -58,10 +58,13 @@ public class AppleLeafBlock extends LeavesBlock implements BonemealableBlock {
     protected void randomTick(BlockState state, ServerLevel level, BlockPos pos, RandomSource random) {
         int age = state.getValue(AGE);
 
-        if(age < MAX_AGE && level.getRawBrightness(pos.above(), 0) >= 9) {
-            BlockState blockState = state.setValue(AGE, Integer.valueOf(age + 1));
+        if(age < MAX_AGE && level.getRawBrightness(pos.above(), 0) >= 9 && random.nextInt(3) != 0) {
+            BlockState blockState = state.setValue(AGE, age + 1);
+            level.setBlock(pos, blockState, 2);
             level.gameEvent(GameEvent.BLOCK_CHANGE, pos, GameEvent.Context.of(blockState));
         }
+
+        state.setValue(AGE, state.getValue(AGE) + 1);
 
         super.randomTick(state, level, pos, random);
     }
@@ -92,7 +95,8 @@ public class AppleLeafBlock extends LeavesBlock implements BonemealableBlock {
             if(!level.isClientSide()) {
                 popResource(level, pos, new ItemStack(Items.APPLE, 1));
                 level.playSound(null, pos, SoundEvents.SWEET_BERRY_BUSH_PICK_BERRIES, SoundSource.BLOCKS, 1.0F, 0.8F + level.random.nextFloat() * 0.25F);
-                BlockState blockState = state.setValue(AGE, Integer.valueOf(0));
+                BlockState blockState = state.setValue(AGE, 0);
+                level.setBlock(pos, blockState, 2);
                 level.gameEvent(GameEvent.BLOCK_CHANGE, pos, GameEvent.Context.of(player, blockState));
             }
         }
@@ -118,7 +122,8 @@ public class AppleLeafBlock extends LeavesBlock implements BonemealableBlock {
 
     @Override
     public void performBonemeal(ServerLevel serverLevel, RandomSource randomSource, BlockPos blockPos, BlockState blockState) {
-        blockState.setValue(AGE, Integer.valueOf(blockState.getValue(AGE) + 1));
+        int age = Math.min(MAX_AGE, blockState.getValue(AGE) + 1);
+        serverLevel.setBlock(blockPos, blockState.setValue(AGE, age), 2);
     }
 
     @Override

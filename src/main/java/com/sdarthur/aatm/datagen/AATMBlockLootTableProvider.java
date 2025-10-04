@@ -32,6 +32,14 @@ public class AATMBlockLootTableProvider extends BlockLootSubProvider {
     protected void generate() {
         this.dropSelf(AATMBlocks.APPLE_TREE_SAPLING.get());
 
+        this.add(AATMBlocks.APPLE_BUD_LEAVES.get(),
+                LootTable.lootTable().withPool(LootPool.lootPool()
+                        .add(LootItem.lootTableItem(AATMBlocks.APPLE_BUD_LEAVES.get())
+                                .when(hasShearsOrSilkTouch())
+                        )
+                )
+        );
+
         this.add(AATMBlocks.APPLE_FLOWER_LEAVES.get(),
                 LootTable.lootTable().withPool(LootPool.lootPool()
                         .add(LootItem.lootTableItem(AATMBlocks.APPLE_FLOWER_LEAVES.get())
@@ -58,22 +66,28 @@ public class AATMBlockLootTableProvider extends BlockLootSubProvider {
 
         this.add(AATMBlocks.APPLE_LEAVES.get(), LootTable.lootTable()
                 .withPool(LootPool.lootPool()
-                        .add(LootItem.lootTableItem(AATMBlocks.APPLE_FLOWER_LEAVES.get())
+                        .add(LootItem.lootTableItem(AATMBlocks.APPLE_BUD_LEAVES.get())
                                 .when(LootItemBlockStatePropertyCondition.hasBlockStateProperties(AATMBlocks.APPLE_LEAVES.get())
                                         .setProperties(StatePropertiesPredicate.Builder.properties()
                                                 .hasProperty(AppleLeafBlock.AGE, 0)))
                                 .when(hasShearsOrSilkTouch())
                         )
-                        .add(LootItem.lootTableItem(AATMBlocks.UNRIPE_APPLE_LEAVES.get())
+                        .add(LootItem.lootTableItem(AATMBlocks.APPLE_FLOWER_LEAVES.get())
                                 .when(LootItemBlockStatePropertyCondition.hasBlockStateProperties(AATMBlocks.APPLE_LEAVES.get())
                                         .setProperties(StatePropertiesPredicate.Builder.properties()
                                                 .hasProperty(AppleLeafBlock.AGE, 1)))
                                 .when(hasShearsOrSilkTouch())
                         )
-                        .add(LootItem.lootTableItem(AATMBlocks.RIPE_APPLE_LEAVES.get())
+                        .add(LootItem.lootTableItem(AATMBlocks.UNRIPE_APPLE_LEAVES.get())
                                 .when(LootItemBlockStatePropertyCondition.hasBlockStateProperties(AATMBlocks.APPLE_LEAVES.get())
                                         .setProperties(StatePropertiesPredicate.Builder.properties()
                                                 .hasProperty(AppleLeafBlock.AGE, 2)))
+                                .when(hasShearsOrSilkTouch())
+                        )
+                        .add(LootItem.lootTableItem(AATMBlocks.RIPE_APPLE_LEAVES.get())
+                                .when(LootItemBlockStatePropertyCondition.hasBlockStateProperties(AATMBlocks.APPLE_LEAVES.get())
+                                        .setProperties(StatePropertiesPredicate.Builder.properties()
+                                                .hasProperty(AppleLeafBlock.AGE, 3)))
                                 .when(hasShearsOrSilkTouch())
                         )
                 )

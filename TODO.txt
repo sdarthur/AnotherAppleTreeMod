@@ -1,4 +1,4 @@
-[ ] Add the apple leaves
+[X] Add the apple leaves
 
 [ ] Change leaf color depending on the biome
 
