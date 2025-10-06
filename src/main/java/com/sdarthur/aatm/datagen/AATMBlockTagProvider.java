@@ -20,6 +20,7 @@ public class AATMBlockTagProvider extends BlockTagsProvider {
     protected void addTags(HolderLookup.Provider provider) {
         this.tag(BlockTags.LEAVES).add(
                 AATMBlocks.APPLE_FRUIT_LEAVES.get(),
+                AATMBlocks.APPLE_LEAVES.get(),
                 AATMBlocks.APPLE_FLOWER_LEAVES.get(),
                 AATMBlocks.UNRIPE_APPLE_LEAVES.get(),
                 AATMBlocks.RIPE_APPLE_LEAVES.get()
