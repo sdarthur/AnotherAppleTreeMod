@@ -26,3 +26,4 @@ run-data
 repo
 
 TODO.txt
+/src/generated/resources/.cache/

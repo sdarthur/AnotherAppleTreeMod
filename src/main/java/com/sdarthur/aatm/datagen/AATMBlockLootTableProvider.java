@@ -32,11 +32,16 @@ public class AATMBlockLootTableProvider extends BlockLootSubProvider {
     protected void generate() {
         this.dropSelf(AATMBlocks.APPLE_TREE_SAPLING.get());
 
-        this.add(AATMBlocks.APPLE_LEAVES.get(),
-                LootTable.lootTable().withPool(LootPool.lootPool()
+        this.add(AATMBlocks.APPLE_LEAVES.get(), LootTable.lootTable()
+                .withPool(LootPool.lootPool()
                         .add(LootItem.lootTableItem(AATMBlocks.APPLE_LEAVES.get())
                                 .when(hasShearsOrSilkTouch())
                         )
+                )
+                .withPool(LootPool.lootPool()
+                        .add(LootItem.lootTableItem(AATMBlocks.APPLE_TREE_SAPLING.get()))
+                        .when(LootItemRandomChanceCondition.randomChance(0.05f))
+                        .when(InvertedLootItemCondition.invert(hasShearsOrSilkTouch()))
                 )
         );
 
