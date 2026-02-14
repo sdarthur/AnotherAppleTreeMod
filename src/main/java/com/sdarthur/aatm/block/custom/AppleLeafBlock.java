@@ -62,9 +62,9 @@ public class AppleLeafBlock extends LeavesBlock implements BonemealableBlock {
             BlockState blockState = state.setValue(AGE, age + 1);
             level.setBlock(pos, blockState, 2);
             level.gameEvent(GameEvent.BLOCK_CHANGE, pos, GameEvent.Context.of(blockState));
-        }
 
-        state.setValue(AGE, state.getValue(AGE) + 1);
+            state.setValue(AGE, state.getValue(AGE) + 1);
+        }
 
         super.randomTick(state, level, pos, random);
     }
@@ -99,6 +99,7 @@ public class AppleLeafBlock extends LeavesBlock implements BonemealableBlock {
                 level.setBlock(pos, blockState, 2);
                 level.gameEvent(GameEvent.BLOCK_CHANGE, pos, GameEvent.Context.of(player, blockState));
             }
+            return InteractionResult.SUCCESS_NO_ITEM_USED;
         }
 
         return super.useWithoutItem(state, level, pos, player, hitResult);
