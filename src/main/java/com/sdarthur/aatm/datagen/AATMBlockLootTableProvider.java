@@ -40,7 +40,7 @@ public class AATMBlockLootTableProvider extends BlockLootSubProvider {
                 )
                 .withPool(LootPool.lootPool()
                         .add(LootItem.lootTableItem(AATMBlocks.APPLE_TREE_SAPLING.get()))
-                        .when(LootItemRandomChanceCondition.randomChance(0.05f))
+                        .when(LootItemRandomChanceCondition.randomChance(0.035f))
                         .when(InvertedLootItemCondition.invert(hasShearsOrSilkTouch()))
                 )
         );
@@ -106,7 +106,7 @@ public class AATMBlockLootTableProvider extends BlockLootSubProvider {
                 )
                 .withPool(LootPool.lootPool()
                         .add(LootItem.lootTableItem(AATMBlocks.APPLE_TREE_SAPLING.get()))
-                        .when(LootItemRandomChanceCondition.randomChance(0.05f))
+                        .when(LootItemRandomChanceCondition.randomChance(0.035f))
                         .when(InvertedLootItemCondition.invert(hasShearsOrSilkTouch()))
                 )
                 .withPool(LootPool.lootPool()
