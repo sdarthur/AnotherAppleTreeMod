@@ -29,10 +29,10 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 
 // Source: https://github.com/snowyhill-crafter/AppleTreeMod/blob/main/src/main/java/com/snowyhill/appletreemod/block/AppleFlowerLeavesBlock.java#L41
 public class AppleLeafBlock extends LeavesBlock implements BonemealableBlock {
-    public static final int MAX_AGE = 3;
+    private static final int MAX_AGE = 3;
     public static final IntegerProperty AGE = IntegerProperty.create("age", 0, 3);
 
-    public static final VoxelShape LEAVES_SHAPE = Shapes.block();
+    private static final VoxelShape LEAVES_SHAPE = Shapes.block();
 
     public AppleLeafBlock(Properties properties) {
         super(properties);
@@ -42,6 +42,14 @@ public class AppleLeafBlock extends LeavesBlock implements BonemealableBlock {
                 .setValue(DISTANCE, 7)
                 .setValue(PERSISTENT, Boolean.FALSE)
                 .setValue(WATERLOGGED, Boolean.FALSE));
+    }
+
+    public int getAge(BlockState state) {
+        return state.getValue(AGE);
+    }
+
+    public int getMaxAge() {
+        return MAX_AGE;
     }
 
     @Override
